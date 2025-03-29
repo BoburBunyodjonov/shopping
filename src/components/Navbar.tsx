@@ -6,7 +6,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 interface NavbarProps {
   logoText: string;
-  cartCount: number;
+  cartCount?: number;
 }
 
 const Navbar: React.FC<NavbarProps> = ({ logoText }) => {
