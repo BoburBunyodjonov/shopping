@@ -9,7 +9,7 @@ interface NavbarProps {
   cartCount?: number;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ logoText }) => {
+const Navbar: React.FC<NavbarProps> = ({ logoText, }) => {
   const cartItemCount = useSelector((state: RootState) =>
     state.cart.items.reduce((total, item) => total + item.quantity, 0)
   );
