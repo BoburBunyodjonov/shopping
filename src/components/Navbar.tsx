@@ -4,16 +4,13 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { useTranslation } from "react-i18next";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import HomeIcon from "@mui/icons-material/Home";
-import StoreIcon from "@mui/icons-material/Store";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import LoginIcon from "@mui/icons-material/Login";
 import { AppBar, Toolbar, IconButton, Select, MenuItem, Box, Badge, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import logo from "../assets/logo.png"; // Import the logo
 
 interface NavbarProps {
   logoText: string;
+  cartCount?: number;
 }
 
 const Navbar: React.FC<NavbarProps> = () => {
