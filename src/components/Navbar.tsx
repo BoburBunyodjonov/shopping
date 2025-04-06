@@ -10,7 +10,7 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import LoginIcon from "@mui/icons-material/Login";
 import { AppBar, Toolbar, IconButton, Select, MenuItem, Box, Badge, Typography } from "@mui/material";
 import { motion } from "framer-motion";
-import logo from "../assets/bordo.uz-Photoroom.png"; // Import the logo
+import logo from "../assets/logo.png"; // Import the logo
 
 interface NavbarProps {
   logoText: string;
@@ -31,8 +31,7 @@ const Navbar: React.FC<NavbarProps> = () => {
       <Toolbar>
         {/* Logo */}
         <Link to="/" style={{ flexGrow: 1 }}>
-          {/* <img src={logo} alt="Bordo Logo" style={{ width: "100px" }} /> */}
-          <p>Shop Easy</p>
+          <img src={logo} alt="Bordo Logo" style={{ width: "120px" }} />
         </Link>
 
         {/* Navigation Links */}
