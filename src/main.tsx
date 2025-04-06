@@ -5,10 +5,11 @@ import { Provider } from "react-redux";
 import store from "./store/store";
 import "./index.css";
 import App from "./App.tsx";
+import "./i18n";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <Provider store={store}>
+    <Provider store={store}> 
       <BrowserRouter>
         <App />
       </BrowserRouter>
