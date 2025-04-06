@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { AppBar, Toolbar, IconButton, Select, MenuItem, Box, Badge, Typography } from "@mui/material";
 import { motion } from "framer-motion";
-import logo from "../assets/logo.png"; // Import the logo
+import logo from "../assets/Bordo.png"; // Import the logo
 
 interface NavbarProps {
   logoText: string;
