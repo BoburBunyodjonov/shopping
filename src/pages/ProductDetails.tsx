@@ -17,14 +17,14 @@ const ProductDetails: React.FC = () => {
 
   const product = {
     id: Number(id),
-    name: `Product ${id}`,
+    name: `Mahsulot ${id}`,
     price: Number(id) * 10,
-    description: "This is a detailed description of the product.",
+    description: "Bu mahsulotning batafsil tavsifi.",
     images: [
-      "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5f4bd7a6-f763-4518-9b81-bdfd40ce3fc9/d26yedh-7321e3e3-0846-4b77-b418-a30348f982f3.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzVmNGJkN2E2LWY3NjMtNDUxOC05YjgxLWJkZmQ0MGNlM2ZjOVwvZDI2eWVkaC03MzIxZTNlMy0wODQ2LTRiNzctYjQxOC1hMzAzNDhmOTgyZjMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.nvmUh7ZUbQgHUITE1Dhs97KzGb_gD2BjLiOiq73oMLY",
-      "https://allroundclub.com/blog/wp-content/uploads/2021/10/how-to-draw-pikachu-150x150.png",
-      "https://via.placeholder.com/400/00ff00",
-      "https://via.placeholder.com/400/0000ff",
+      "/src/assets/product/product1.png",
+      "/src/assets/product/product2.png",
+      "/src/assets/product/product3.png",
+      "/src/assets/product/product4.png",
     ],
     colors: ["Red", "Green", "Blue"],
     sizes: ["S", "M", "L", "XL"],
@@ -85,7 +85,7 @@ const ProductDetails: React.FC = () => {
           <img
             src={selectedImage}
             alt={product.name}
-            className="w-full h-64 object-cover rounded-md mb-4"
+            className="w-full h-[400px] object-cover rounded-md mb-4"
           />
           <div className="flex space-x-4">
             {product.images.map((image, index) => (
@@ -94,7 +94,7 @@ const ProductDetails: React.FC = () => {
                 src={image}
                 alt={`Thumbnail ${index + 1}`}
                 onClick={() => setSelectedImage(image)}
-                className={`w-20 h-20 object-cover rounded-md cursor-pointer border ${
+                className={`w-16 h-16 object-cover rounded-md cursor-pointer border ${
                   selectedImage === image ? "border-green-500" : "border-gray-300"
                 }`}
               />
@@ -105,13 +105,13 @@ const ProductDetails: React.FC = () => {
         {/* Product Details */}
         <div>
           <p className="text-green-500 text-lg font-semibold mb-4">
-            ${product.price}
+            {product.price} 000 So'm
           </p>
           <p className="text-gray-700 mb-4">{product.description}</p>
 
           {/* Color Selection */}
           <div className="mb-4">
-            <h3 className="text-lg font-bold mb-2">Select Color</h3>
+            <h3 className="text-lg font-bold mb-2">Rangi</h3>
             <div className="flex space-x-4">
               {product.colors.map((color) => (
                 <button
@@ -132,7 +132,7 @@ const ProductDetails: React.FC = () => {
 
           {/* Size Selection */}
           <div className="mb-4">
-            <h3 className="text-lg font-bold mb-2">Select Size</h3>
+            <h3 className="text-lg font-bold mb-2">Razmer</h3>
             <div className="flex space-x-4">
               {product.sizes.map((size) => (
                 <button
@@ -172,7 +172,7 @@ const ProductDetails: React.FC = () => {
               onClick={handleAddToCart}
               className="mt-4 bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition"
             >
-              Add to Cart
+              Savatga qo'shish
             </button>
           )}
         </div>

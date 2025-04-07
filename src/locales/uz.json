@@ -7,10 +7,13 @@
     "cart": "Savat"
   },
   "home": {
-    "welcome": "ShopEasy-ga xush kelibsiz!",
-    "aboutTitle": "ShopEasy haqida",
-    "aboutText": "ShopEasy - bu barcha xaridlaringiz uchun yagona manzil. Biz yuqori sifatli mahsulotlarning keng assortimentini tengsiz narxlarda taqdim etamiz. Bizning vazifamiz xaridlarni oson, qulay va yoqimli qilishdir. Bizga qo'shiling va oson xarid qilish zavqini his eting!",
+    "welcome": "Bordo-ga xush kelibsiz!",
+    "aboutTitle": "Bordo haqida",
+    "aboutText": "Bordo - bu barcha xaridlaringiz uchun yagona manzil. Biz yuqori sifatli mahsulotlarning keng assortimentini tengsiz narxlarda taqdim etamiz. Bizning vazifamiz xaridlarni oson, qulay va yoqimli qilishdir. Bizga qo'shiling va oson xarid qilish zavqini his eting!",
     "seeAllProducts": "Barcha mahsulotlarni ko'rish"
+  },
+  "product": {
+    "all_products": "Barcha mahsulotlar"
   },
   "register": {
     "title": "Ro'yxatdan o'tish",
@@ -42,11 +45,11 @@
   },
   "about": {
     "title": "Biz haqimizda",
-    "text": "ShopEasy - bu barcha xaridlaringiz uchun yagona manzil. Biz eng yaxshi mahsulotlarni eng yaxshi narxlarda taqdim etishga intilamiz."
+    "text": "Bordo - bu barcha xaridlaringiz uchun yagona manzil. Biz eng yaxshi mahsulotlarni eng yaxshi narxlarda taqdim etishga intilamiz."
   },
   "footer": {
-    "aboutTitle": "ShopEasy haqida",
-    "aboutText": "ShopEasy - bu barcha xaridlaringiz uchun yagona manzil. Biz yuqori sifatli mahsulotlarning keng assortimentini tengsiz narxlarda taqdim etamiz. Biz bilan qulay xarid qilishdan zavqlaning!",
+    "aboutTitle": "Bordo haqida",
+    "aboutText": "Bordo - bu barcha xaridlaringiz uchun yagona manzil. Biz yuqori sifatli mahsulotlarning keng assortimentini tengsiz narxlarda taqdim etamiz. Biz bilan qulay xarid qilishdan zavqlaning!",
     "quickLinks": "Tezkor havolalar",
     "aboutUs": "Biz haqimizda",
     "contactUs": "Biz bilan bog'lanish",
@@ -62,6 +65,6 @@
     "twitter": "Twitter",
     "instagram": "Instagram",
     "linkedin": "LinkedIn",
-    "copyright": "ShopEasy. Barcha huquqlar himoyalangan."
+    "copyright": "Bordo. Barcha huquqlar himoyalangan."
   }
 }

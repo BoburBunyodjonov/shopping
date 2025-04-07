@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 
+import Banner from "../assets/banner.jpg";
+
 const images = [
-  "https://cdn.pixabay.com/photo/2016/09/22/10/44/banner-1686943_1280.jpg",
-  "https://cdn.pixabay.com/photo/2016/09/22/10/44/banner-1686943_1280.jpg",
-  "https://cdn.pixabay.com/photo/2016/09/22/10/44/banner-1686943_1280.jpg",
+  Banner,
+  Banner,
+  Banner,
 ];
 
 const Carousel: React.FC = () => {
@@ -17,7 +19,7 @@ const Carousel: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-[500px] overflow-hidden">
+    <div className="relative w-full overflow-hidden">
       <div
         className="flex transition-transform duration-500"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -27,7 +29,7 @@ const Carousel: React.FC = () => {
             key={index}
             src={src}
             alt={`Slide ${index + 1}`}
-            className="w-full h-[500px] object-cover"
+            className="w-full object-contain"
           />
         ))}
       </div>

@@ -44,7 +44,7 @@ const Cart: React.FC = () => {
                 </div>
                 <div className="flex items-center space-x-4">
                   <p className="text-lg font-bold">
-                    ${item.price * item.quantity}
+                    {item.price * item.quantity} 000 So'm
                   </p>
                   <button
                     onClick={() => dispatch(removeFromCart(item.id))}
@@ -56,7 +56,7 @@ const Cart: React.FC = () => {
               </div>
             ))}
             <div className="text-right font-bold text-lg mb-4">
-              {t("cart.total")}: ${totalPrice}
+              {t("cart.total")}: {totalPrice} 000 So'm
             </div>
             <div className="text-right">
               <button

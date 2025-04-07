@@ -7,7 +7,7 @@ const Register: React.FC = () => {
 
   return (
     <div>
-      <Navbar logoText="ShopEasy" />
+      <Navbar logoText="Bordo" />
       <div className="max-w-md mx-auto mt-10 p-6 bg-white shadow-md rounded-md">
         <h1 className="text-2xl font-bold mb-4">{t("register.title")}</h1>
         <form>

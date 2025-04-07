@@ -9,7 +9,7 @@ const Layout: React.FC = () => {
 
   return (
     <div>
-      <Navbar logoText="ShopEasy" cartCount={0} />
+      <Navbar logoText="Bordo" cartCount={0} />
       {/* Render Carousel only on the Home page */}
       {location.pathname === "/" && <Carousel />}
       <main className="p-4">

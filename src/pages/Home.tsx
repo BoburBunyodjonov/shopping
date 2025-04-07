@@ -11,8 +11,7 @@ const Home: React.FC = () => {
   const products = Array.from({ length: 16 }, (_, i) => ({
     id: i + 1,
     name: `Product ${i + 1}`,
-    price: `$${(i + 1) * 10}`,
-    image: "https://media.wired.com/photos/6508bcf4f60ed7f4e17ab7d0/1:1/w_150%2Cc_limit/iPhone-15-Review-Featured-Gear.jpg",
+    image: `/src/assets/product/product${i + 1}.png`,
   }));
 
   const openModal = (productName: string) => {
@@ -68,17 +67,17 @@ const Home: React.FC = () => {
         {products.map((product) => (
           <motion.div
             key={product.id}
-            className="border rounded-lg p-4 hover:shadow-xl cursor-pointer transition-transform transform hover:scale-105 bg-white"
+            className="border border-[#b7b7b7] rounded-lg p-3 hover:shadow-xl cursor-pointer transition-transform transform hover:scale-99 bg-white"
             onClick={() => openModal(product.name)}
             whileHover={{ scale: 1.05 }}
           >
             <img
               src={product.image}
               alt={product.name}
-              className="w-full h-40 object-cover rounded-md mb-4"
+              className="w-full object-cover rounded-md mb-4"
             />
-            <h2 className="text-lg font-bold text-gray-800">{product.name}</h2>
-            <p className="text-green-500 font-semibold">{product.price}</p>
+            {/* <h2 className="text-lg font-bold text-gray-800">{product.name}</h2> */}
+            {/* <p className="text-green-500 font-semibold">{product.price}</p> */}
           </motion.div>
         ))}
       </motion.div>

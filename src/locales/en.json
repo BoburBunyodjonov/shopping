@@ -7,10 +7,13 @@
     "cart": "Cart"
   },
   "home": {
-    "welcome": "Welcome to ShopEasy!",
-    "aboutTitle": "About ShopEasy",
-    "aboutText": "ShopEasy is your one-stop destination for all your shopping needs. We provide a wide range of high-quality products at unbeatable prices. Our mission is to make shopping easy, convenient, and enjoyable for everyone. Join us and experience the joy of hassle-free shopping!",
+    "welcome": "Welcome to Bordo!",
+    "aboutTitle": "About Bordo",
+    "aboutText": "Bordo is your one-stop destination for all your shopping needs. We provide a wide range of high-quality products at unbeatable prices. Our mission is to make shopping easy, convenient, and enjoyable for everyone. Join us and experience the joy of hassle-free shopping!",
     "seeAllProducts": "See All Products"
+  },
+  "product": {
+    "all_products": "All Products"
   },
   "register": {
     "title": "Register",
@@ -42,11 +45,11 @@
   },
   "about": {
     "title": "About Us",
-    "text": "ShopEasy is your one-stop shop for all your shopping needs. We aim to provide the best products at the best prices."
+    "text": "Bordo is your one-stop shop for all your shopping needs. We aim to provide the best products at the best prices."
   },
   "footer": {
-    "aboutTitle": "About ShopEasy",
-    "aboutText": "ShopEasy is your one-stop destination for all your shopping needs. We provide a wide range of high-quality products at unbeatable prices. Experience hassle-free shopping with us!",
+    "aboutTitle": "About Bordo",
+    "aboutText": "Bordo is your one-stop destination for all your shopping needs. We provide a wide range of high-quality products at unbeatable prices. Experience hassle-free shopping with us!",
     "quickLinks": "Quick Links",
     "aboutUs": "About Us",
     "contactUs": "Contact Us",
@@ -62,6 +65,6 @@
     "twitter": "Twitter",
     "instagram": "Instagram",
     "linkedin": "LinkedIn",
-    "copyright": "ShopEasy. All rights reserved."
+    "copyright": "Bordo. All rights reserved."
   }
 }
