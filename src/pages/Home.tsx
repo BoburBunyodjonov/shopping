@@ -11,7 +11,7 @@ const Home: React.FC = () => {
   const products = Array.from({ length: 16 }, (_, i) => ({
     id: i + 1,
     name: `Product ${i + 1}`,
-    image: `/src/assets/product/product${i + 1}.png`,
+    image: `https://files.glamourboutique.uz/products/024art09.300x450.JPG`,
   }));
 
   const openModal = (productName: string) => {

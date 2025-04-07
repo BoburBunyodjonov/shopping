@@ -9,7 +9,7 @@ const Products: React.FC = () => {
     id: i + 1,
     name: `Mahsulot ${i + 1}`,
     price: `${(i + 1) * 10} 000 So'm`,
-    image: `/assets/product/product${i + 1}.png`, // Ensure images are in the public/assets/product folder
+    image: `https://files.glamourboutique.uz/products/024art09.300x450.JPG`, // Ensure images are in the public/assets/product folder
   }));
 
   return (
