@@ -10,7 +10,7 @@ const Home: React.FC = () => {
 
   const products = Array.from({ length: 16 }, (_, i) => ({
     id: i + 1,
-    name: `Product ${i + 1}`,
+    name: `Mahsulot ${i + 1}`,
     image: `https://files.glamourboutique.uz/products/024art09.300x450.JPG`,
   }));
 
@@ -76,7 +76,7 @@ const Home: React.FC = () => {
               alt={product.name}
               className="w-full object-cover rounded-md mb-4"
             />
-            {/* <h2 className="text-lg font-bold text-gray-800">{product.name}</h2> */}
+            <h2 className="text-lg font-bold text-gray-800">{product.name}</h2>
             {/* <p className="text-green-500 font-semibold">{product.price}</p> */}
           </motion.div>
         ))}
