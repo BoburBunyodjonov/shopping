@@ -3,6 +3,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import Carousel from "./Carousel";
+import Map from "./Map";
 
 const Layout: React.FC = () => {
   const location = useLocation();
@@ -15,6 +16,7 @@ const Layout: React.FC = () => {
       <main className="p-4">
         <Outlet />
       </main>
+      {location.pathname === "/" && <Map />} 
       <Footer />
     </div>
   );
