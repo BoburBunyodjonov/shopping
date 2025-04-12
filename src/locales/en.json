@@ -13,7 +13,10 @@
     "seeAllProducts": "See All Products"
   },
   "product": {
-    "all_products": "All Products"
+    "all_products": "All Products",
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page"
   },
   "register": {
     "title": "Register",

@@ -13,7 +13,10 @@
     "seeAllProducts": "Посмотреть все продукты"
   },
   "product": {
-    "all_products": "Все продукты"
+    "all_products": "Все продукты", 
+    "previous": "Предыдущий",
+    "next": "Следующий",
+    "page": "Страница"
   },
   "register": {
     "title": "Регистрация",

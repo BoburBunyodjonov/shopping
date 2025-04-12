@@ -1,4 +1,5 @@
-import { Routes, Route } from "react-router-dom";
+import React from "react";
+import { Routes, Route } from "react-router-dom"; // Removed BrowserRouter
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -9,7 +10,7 @@ import Products from "./pages/Products";
 import ProductDetails from "./pages/ProductDetails";
 import GlobalLoader from "./components/GlobalLoader";
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <GlobalLoader>
       <Routes>

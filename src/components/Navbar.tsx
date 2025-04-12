@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { useTranslation } from "react-i18next";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { AppBar, Toolbar, IconButton, Select, MenuItem, Box, Badge, Typography, useMediaQuery, Drawer, List, ListItem, ListItemText } from "@mui/material";
+import { AppBar, Toolbar, IconButton, Select, MenuItem, Box, Badge, Typography, useMediaQuery, Drawer, List, ListItem, ListItemText, Menu, MenuItem as MuiMenuItem } from "@mui/material";
 import { motion } from "framer-motion";
 import logo from "../assets/Bordo.png"; // Import the logo
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle"; // User icon
+import ExitToAppIcon from "@mui/icons-material/ExitToApp"; // Logout icon
 
 interface NavbarProps {
   logoText: string;
@@ -21,7 +23,9 @@ const Navbar: React.FC<NavbarProps> = () => {
     state.cart.items.reduce((total, item) => total + item.quantity, 0)
   );
   const isMobile = useMediaQuery("(max-width: 768px)");
-  const [drawerOpen, setDrawerOpen] = React.useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const openMenu = Boolean(anchorEl);
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
@@ -30,6 +34,22 @@ const Navbar: React.FC<NavbarProps> = () => {
   const toggleDrawer = (open: boolean) => {
     setDrawerOpen(open);
   };
+
+  const handleMenuClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleCloseMenu = () => {
+    setAnchorEl(null);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    window.location.href = "/"; // Redirect to homepage or login
+  };
+
+  const isLoggedIn = localStorage.getItem("token") && localStorage.getItem("user");
 
   return (
     <AppBar position="static" color="default" elevation={1}>
@@ -142,6 +162,30 @@ const Navbar: React.FC<NavbarProps> = () => {
               <MenuItem value="ru">Русский</MenuItem>
               <MenuItem value="uz">O'zbek</MenuItem>
             </Select>
+
+            {/* Profile Dropdown */}
+            {isLoggedIn && (
+              <Box sx={{ ml: 2 }}>
+                <IconButton onClick={handleMenuClick} color="inherit">
+                  <AccountCircleIcon />
+                </IconButton>
+                <Menu
+                  anchorEl={anchorEl}
+                  open={openMenu}
+                  onClose={handleCloseMenu}
+                  anchorOrigin={{ vertical: "top", horizontal: "right" }}
+                  transformOrigin={{ vertical: "top", horizontal: "right" }}
+                >
+                  <MuiMenuItem component={Link} to="/profile" onClick={handleCloseMenu}>
+                    {t("navbar.profile")}
+                  </MuiMenuItem>
+                  <MuiMenuItem onClick={handleLogout}>
+                    <ExitToAppIcon sx={{ mr: 1 }} />
+                    {t("navbar.logout")}
+                  </MuiMenuItem>
+                </Menu>
+              </Box>
+            )}
           </>
         )}
       </Toolbar>

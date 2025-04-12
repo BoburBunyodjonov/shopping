@@ -13,7 +13,10 @@
     "seeAllProducts": "Barcha mahsulotlarni ko'rish"
   },
   "product": {
-    "all_products": "Barcha mahsulotlar"
+    "all_products": "Barcha mahsulotlar",
+    "previous": "Oldingi",
+    "next": "Keyingi",
+    "page": "Sahifa"
   },
   "register": {
     "title": "Ro'yxatdan o'tish",
