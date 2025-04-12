@@ -1,0 +1,74 @@
+{
+  "navbar": {
+    "home": "Bosh sahifa",
+    "products": "Mahsulotlar",
+    "register": "Ro'yxatdan o'tish",
+    "login": "Kirish",
+    "cart": "Savat",
+    "logout": "Chiqish"
+  },
+  "home": {
+    "welcome": "Bordo-ga xush kelibsiz!",
+    "aboutTitle": "Bordo haqida",
+    "aboutText": "Bordo - bu barcha xaridlaringiz uchun yagona manzil. Biz yuqori sifatli mahsulotlarning keng assortimentini tengsiz narxlarda taqdim etamiz. Bizning vazifamiz xaridlarni oson, qulay va yoqimli qilishdir. Bizga qo'shiling va oson xarid qilish zavqini his eting!",
+    "seeAllProducts": "Barcha mahsulotlarni ko'rish"
+  },
+  "product": {
+    "all_products": "Barcha mahsulotlar",
+    "previous": "Oldingi",
+    "next": "Keyingi",
+    "page": "Sahifa"
+  },
+  "register": {
+    "title": "Ro'yxatdan o'tish",
+    "name": "Ism",
+    "email": "Elektron pochta",
+    "password": "Parol",
+    "submit": "Ro'yxatdan o'tish"
+  },
+  "login": {
+    "title": "Kirish",
+    "email": "Elektron pochta",
+    "password": "Parol",
+    "submit": "Kirish"
+  },
+  "cart": {
+    "title": "Sizning savatingiz",
+    "empty": "Sizning savatingiz bo'sh.",
+    "total": "Jami",
+    "placeOrder": "Buyurtma berish",
+    "orderSuccess": "Sizning buyurtmangiz muvaffaqiyatli amalga oshirildi!",
+    "orderEmpty": "Sizning savatingiz bo'sh. Buyurtma berishdan oldin mahsulot qo'shing."
+  },
+  "productDetails": {
+    "description": "Bu mahsulotning batafsil tavsifi.",
+    "selectColor": "Rangni tanlang",
+    "selectSize": "O'lchamni tanlang",
+    "addToCart": "Savatchaga qo'shish",
+    "quantity": "Miqdor"
+  },
+  "about": {
+    "title": "Biz haqimizda",
+    "text": "Bordo - bu barcha xaridlaringiz uchun yagona manzil. Biz eng yaxshi mahsulotlarni eng yaxshi narxlarda taqdim etishga intilamiz."
+  },
+  "footer": {
+    "aboutTitle": "Bordo haqida",
+    "aboutText": "Bordo - bu barcha xaridlaringiz uchun yagona manzil. Biz yuqori sifatli mahsulotlarning keng assortimentini tengsiz narxlarda taqdim etamiz. Biz bilan qulay xarid qilishdan zavqlaning!",
+    "quickLinks": "Tezkor havolalar",
+    "aboutUs": "Biz haqimizda",
+    "contactUs": "Biz bilan bog'lanish",
+    "privacyPolicy": "Maxfiylik siyosati",
+    "termsConditions": "Shartlar va qoidalar",
+    "customerSupport": "Mijozlarni qo'llab-quvvatlash",
+    "faqs": "Tez-tez so'raladigan savollar",
+    "returnsRefunds": "Qaytarish va qaytarib berish",
+    "shippingInfo": "Yetkazib berish ma'lumotlari",
+    "supportCenter": "Qo'llab-quvvatlash markazi",
+    "followUs": "Bizni kuzatib boring",
+    "facebook": "Facebook",
+    "twitter": "Twitter",
+    "instagram": "Instagram",
+    "linkedin": "LinkedIn",
+    "copyright": "Bordo. Barcha huquqlar himoyalangan."
+  }
+}

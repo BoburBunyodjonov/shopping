@@ -1,17 +1,24 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+import React from "react";
+import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
-import { Provider } from "react-redux";
-import store from "./store/store";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { Provider } from "react-redux"; // ✅ Redux Provider
+import App from "./App";
+import { queryClient } from "./queryClient";
 import "./index.css";
-import App from "./App.tsx";
+import "./i18n";
+import  store  from "./store/store"; // ✅ Corrected path to the Redux store
 
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <Provider store={store}>
+const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
+
+root.render(
+  <React.StrictMode>
+    <Provider store={store}> {/* ✅ Redux kontekst */}
       <BrowserRouter>
-        <App />
+        <QueryClientProvider client={queryClient}>
+          <App />
+        </QueryClientProvider>
       </BrowserRouter>
     </Provider>
-  </StrictMode>
+  </React.StrictMode>
 );

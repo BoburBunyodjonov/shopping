@@ -1,6 +1,9 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const Footer: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <footer className="bg-gray-800 text-white py-10">
       <div className="max-w-7xl mx-auto px-4">
@@ -8,36 +11,32 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* About Section */}
           <div>
-            <h3 className="text-lg font-bold mb-4">About ShopEasy</h3>
-            <p className="text-sm text-gray-400">
-              ShopEasy is your one-stop destination for all your shopping needs.
-              We provide a wide range of high-quality products at unbeatable
-              prices. Experience hassle-free shopping with us!
-            </p>
+            <h3 className="text-lg font-bold mb-4">{t("footer.aboutTitle")}</h3>
+            <p className="text-sm text-gray-400">{t("footer.aboutText")}</p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-bold mb-4">Quick Links</h3>
+            <h3 className="text-lg font-bold mb-4">{t("footer.quickLinks")}</h3>
             <ul className="space-y-2">
               <li>
                 <a href="/about" className="text-gray-400 hover:text-white">
-                  About Us
+                  {t("footer.aboutUs")}
                 </a>
               </li>
               <li>
                 <a href="/contact" className="text-gray-400 hover:text-white">
-                  Contact Us
+                  {t("footer.contactUs")}
                 </a>
               </li>
               <li>
                 <a href="/privacy" className="text-gray-400 hover:text-white">
-                  Privacy Policy
+                  {t("footer.privacyPolicy")}
                 </a>
               </li>
               <li>
                 <a href="/terms" className="text-gray-400 hover:text-white">
-                  Terms & Conditions
+                  {t("footer.termsConditions")}
                 </a>
               </li>
             </ul>
@@ -45,26 +44,26 @@ const Footer: React.FC = () => {
 
           {/* Customer Support */}
           <div>
-            <h3 className="text-lg font-bold mb-4">Customer Support</h3>
+            <h3 className="text-lg font-bold mb-4">{t("footer.customerSupport")}</h3>
             <ul className="space-y-2">
               <li>
                 <a href="/faq" className="text-gray-400 hover:text-white">
-                  FAQs
+                  {t("footer.faqs")}
                 </a>
               </li>
               <li>
                 <a href="/returns" className="text-gray-400 hover:text-white">
-                  Returns & Refunds
+                  {t("footer.returnsRefunds")}
                 </a>
               </li>
               <li>
                 <a href="/shipping" className="text-gray-400 hover:text-white">
-                  Shipping Information
+                  {t("footer.shippingInfo")}
                 </a>
               </li>
               <li>
                 <a href="/support" className="text-gray-400 hover:text-white">
-                  Support Center
+                  {t("footer.supportCenter")}
                 </a>
               </li>
             </ul>
@@ -72,7 +71,7 @@ const Footer: React.FC = () => {
 
           {/* Social Media */}
           <div>
-            <h3 className="text-lg font-bold mb-4">Follow Us</h3>
+            <h3 className="text-lg font-bold mb-4">{t("footer.followUs")}</h3>
             <div className="flex space-x-4">
               <a
                 href="https://facebook.com"
@@ -80,7 +79,7 @@ const Footer: React.FC = () => {
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white"
               >
-                Facebook
+                {t("footer.facebook")}
               </a>
               <a
                 href="https://twitter.com"
@@ -88,7 +87,7 @@ const Footer: React.FC = () => {
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white"
               >
-                Twitter
+                {t("footer.twitter")}
               </a>
               <a
                 href="https://instagram.com"
@@ -96,7 +95,7 @@ const Footer: React.FC = () => {
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white"
               >
-                Instagram
+                {t("footer.instagram")}
               </a>
               <a
                 href="https://linkedin.com"
@@ -104,7 +103,7 @@ const Footer: React.FC = () => {
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white"
               >
-                LinkedIn
+                {t("footer.linkedin")}
               </a>
             </div>
           </div>
@@ -112,7 +111,7 @@ const Footer: React.FC = () => {
 
         {/* Bottom Section */}
         <div className="border-t border-gray-700 pt-4 text-center text-sm text-gray-400">
-          &copy; {new Date().getFullYear()} ShopEasy. All rights reserved.
+          &copy; {new Date().getFullYear()} {t("footer.copyright")}
         </div>
       </div>
     </footer>
