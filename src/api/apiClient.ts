@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
 
 const apiClient = axios.create({
-  baseURL: "http://srvr.bordoshoes.uz/",
+  baseURL: "https://srvr.bordoshoes.uz/",
   headers: {
     "Content-Type": "application/json",
   },
