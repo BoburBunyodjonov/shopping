@@ -1,7 +1,6 @@
-'use client'
+'use client';
 
-
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
@@ -9,11 +8,12 @@ import { useTranslation } from "react-i18next";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { AppBar, Toolbar, IconButton, Select, MenuItem, Box, Badge, Typography, useMediaQuery, Drawer, List, ListItem, ListItemText, Menu, MenuItem as MuiMenuItem } from "@mui/material";
 import { motion } from "framer-motion";
-import logo from "../assets/Bordo.png"; // Import the logo
+import logo from "../assets/Bordo.png";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle"; // User icon
-import ExitToAppIcon from "@mui/icons-material/ExitToApp"; // Logout icon
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import { useAuth } from "../AuthContext";
 
 interface NavbarProps {
   logoText: string;
@@ -26,10 +26,12 @@ const Navbar: React.FC<NavbarProps> = () => {
     state.cart.items.reduce((total, item) => total + item.quantity, 0)
   );
   const isMobile = useMediaQuery("(max-width: 768px)");
-  const [drawerOpen, setDrawerOpen] = useState(false);
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [drawerOpen, setDrawerOpen] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const openMenu = Boolean(anchorEl);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
+  // AuthContext dan foydalanish
+  const { isLoggedIn, logout } = useAuth();
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
@@ -47,23 +49,9 @@ const Navbar: React.FC<NavbarProps> = () => {
     setAnchorEl(null);
   };
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const token = localStorage.getItem("token");
-      const user = localStorage.getItem("user");
-
-      if (token && user) {
-        setIsLoggedIn(true);
-      }
-    }
-  }, []);
-
   const handleLogout = () => {
-    if (typeof window !== 'undefined') {
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
-      window.location.href = "/";
-    }
+    logout();
+    window.location.href = "/";
   };
 
   return (
@@ -174,7 +162,6 @@ const Navbar: React.FC<NavbarProps> = () => {
                   </motion.div>
                 </>
               )}
-
             </Box>
 
             {/* Cart */}

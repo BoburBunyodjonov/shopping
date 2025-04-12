@@ -1,33 +1,27 @@
-'use client'
+'use client';
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { loginUser, UserLogin, LoginResponse } from "../api/usersApi";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../AuthContext"; // AuthContext ni import qilamiz
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
-  const [loginData, setLoginData] = useState<LoginResponse | null>(null);
+  const { login } = useAuth(); // AuthContext dan login funksiyasini olamiz
   const [formData, setFormData] = useState<UserLogin>({
     phone_number: "",
     password: "",
   });
 
-  useEffect(() => {
-    if (loginData && typeof window !== 'undefined') { 
-        localStorage.setItem("token", loginData.token);
-        localStorage.setItem("access", loginData.user.access.toString());
-        localStorage.setItem("user", JSON.stringify(loginData.user));
-    }
-  }, [loginData]);
-
   const mutation = useMutation<LoginResponse, Error, UserLogin>({
     mutationFn: loginUser,
     onSuccess: (data) => {
+      login(data.token, data.user);
+      
       toast.success(`Login successful! Welcome back, ${data.user.name}`);
-      setLoginData(data);
       setFormData({
         phone_number: "",
         password: "",
@@ -41,7 +35,6 @@ const Login: React.FC = () => {
       toast.error(errorMessage);
     },
   });
-
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -90,9 +83,9 @@ const Login: React.FC = () => {
         <button
           type="submit"
           className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
-          disabled={mutation.status === "pending"}
+          disabled={mutation.isPending} // react-query v5+ da isPending ishlatiladi
         >
-          {mutation.status === "pending" ? "Logging in..." : "Login"}
+          {mutation.isPending ? "Logging in..." : "Login"}
         </button>
       </form>
     </div>
