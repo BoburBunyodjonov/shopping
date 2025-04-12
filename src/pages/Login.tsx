@@ -1,30 +1,47 @@
-import React, { useState } from "react";
+'use client'
+
+import React, { useEffect, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { loginUser, UserLogin, LoginResponse } from "../api/usersApi";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {
+  const navigate = useNavigate();
+  const [loginData, setLoginData] = useState<LoginResponse | null>(null);
   const [formData, setFormData] = useState<UserLogin>({
     phone_number: "",
     password: "",
   });
 
+  useEffect(() => {
+    if (loginData) {
+      localStorage.setItem("token", loginData.token);
+      localStorage.setItem("access", loginData.user.access.toString());
+      localStorage.setItem("user", JSON.stringify(loginData.user));
+    }
+  }, [loginData]);
+
   const mutation = useMutation<LoginResponse, Error, UserLogin>({
     mutationFn: loginUser,
     onSuccess: (data) => {
-      toast.success(`Login successful! Welcome back, ${data.username}`);
-      localStorage.setItem("token", data.token);
+      toast.success(`Login successful! Welcome back, ${data.user.name}`);
+      setLoginData(data);
       setFormData({
         phone_number: "",
         password: "",
       });
+      setTimeout(() => {
+        navigate('/');
+      }, 1000);
     },
     onError: (error) => {
       const errorMessage = error instanceof Error ? error.message : "An unknown error occurred";
-      toast.error(errorMessage); // Display server error or fallback message
+      toast.error(errorMessage);
     },
   });
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

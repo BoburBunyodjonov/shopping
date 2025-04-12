@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { IProductProps } from "../api/productsApi";
@@ -7,8 +7,7 @@ import { post } from "../api/apiClient";
 import { useQuery } from "@tanstack/react-query";
 
 const Home: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
+  const navigate = useNavigate();
   const { t } = useTranslation();
 
   const [page, setPage] = useState(1); // State for current page
@@ -27,16 +26,6 @@ const Home: React.FC = () => {
   if (isLoading) {
     return <div>{t("loading")}</div>;
   }
-
-  const openModal = (productName: string) => {
-    setSelectedProduct(productName);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedProduct(null);
-  };
 
   return (
     <motion.div
@@ -82,7 +71,14 @@ const Home: React.FC = () => {
           <motion.div
             key={product.id}
             className="border border-[#b7b7b7] rounded-lg p-3 hover:shadow-xl cursor-pointer transition-transform transform hover:scale-99 bg-white"
-            onClick={() => openModal(product.title)}
+            onClick={() => {
+              const access = localStorage.getItem('access');
+              if (access === 'true') {
+                navigate('/products');
+              } else {
+                navigate('/register');
+              }
+            }}
             whileHover={{ scale: 1.05 }}
           >
             <img
@@ -124,68 +120,20 @@ const Home: React.FC = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5 }}
       >
-        <Link
-          to="/products"
-          className="bg-green-500 text-white py-2 px-6 rounded-md hover:bg-green-600 transition"
+        <p
+          onClick={() => {
+            const access = localStorage.getItem('access');
+            if (access === 'true') {
+              navigate('/products');
+            } else {
+              navigate('/register');
+            }
+          }}
+          className="w-[200px] mx-auto bg-green-500 text-white py-2 px-6 rounded-md hover:bg-green-600 transition"
         >
           {t("home.seeAllProducts")}
-        </Link>
+        </p>
       </motion.div>
-
-      {/* Modal */}
-      {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex items-center justify-center z-50">
-          <motion.div
-            className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.3 }}
-          >
-            <h2 className="text-xl font-bold mb-4">Order {selectedProduct}</h2>
-            <form>
-              <div className="mb-4">
-                <label className="block text-sm font-medium mb-1">Name</label>
-                <input
-                  type="text"
-                  className="w-full border rounded-md p-2"
-                  placeholder="Enter your name"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-sm font-medium mb-1">Phone</label>
-                <input
-                  type="text"
-                  className="w-full border rounded-md p-2"
-                  placeholder="Enter your phone number"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-sm font-medium mb-1">Location</label>
-                <input
-                  type="text"
-                  className="w-full border rounded-md p-2"
-                  placeholder="Enter your location"
-                />
-              </div>
-              <div className="flex justify-end space-x-4">
-                <button
-                  type="button"
-                  className="bg-gray-300 text-black py-2 px-4 rounded-md hover:bg-gray-400 transition"
-                  onClick={closeModal}
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition"
-                >
-                  Submit
-                </button>
-              </div>
-            </form>
-          </motion.div>
-        </div>
-      )}
     </motion.div>
   );
 };

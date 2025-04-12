@@ -31,9 +31,16 @@ export interface UserLogin {
 
 // Type for the response after successful login
 export interface LoginResponse {
-  id: number; // User's unique ID
-  username: string; // User's username
-  email: string; // User's email
+  user: {
+    id: number; // User's unique ID
+    name: string; // User's name
+    phone_number: string; // User's phone number
+    password: string; // Hashed password
+    location: string; // User's location
+    role: string; // User's role (e.g., "user")
+    access: boolean; // Access status
+    create_user_at: string; // User creation timestamp
+  };
   token: string; // Authentication token
 }
 

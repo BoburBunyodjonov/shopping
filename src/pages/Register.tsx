@@ -3,8 +3,10 @@ import { useMutation } from "@tanstack/react-query";
 import { registerUser, UserRegistration, UserResponse } from "../api/usersApi";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const Register: React.FC = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<UserRegistration>({
     name: "",
     password: "",
@@ -15,21 +17,21 @@ const Register: React.FC = () => {
   const mutation = useMutation<UserResponse, Error, UserRegistration>({
     mutationFn: registerUser,
     onSuccess: (data) => {
-      // Save the token to localStorage
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data.user));
-      localStorage.setItem("access", data.user.access.toString());
+      if (typeof window !== "undefined") {
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user));
+        localStorage.setItem("access", data.user.access.toString());
+      }
 
-      // Show success toast
       toast.success(`User registered successfully! Welcome, ${data.user.name}`);
-
-      // Reset the form
+      navigate('/')
       setFormData({
         name: "",
         password: "",
         phone_number: "",
         location: "",
       });
+      
     },
     onError: (error) => {
       const errorMessage = error instanceof Error ? error.message : "An unknown error occurred";

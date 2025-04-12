@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+'use client'
+
+
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
@@ -26,6 +29,7 @@ const Navbar: React.FC<NavbarProps> = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const openMenu = Boolean(anchorEl);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
@@ -43,13 +47,20 @@ const Navbar: React.FC<NavbarProps> = () => {
     setAnchorEl(null);
   };
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const user = localStorage.getItem("user");
+
+    if (token && user) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    window.location.href = "/"; // Redirect to homepage or login
+    window.location.href = "/";
   };
-
-  const isLoggedIn = localStorage.getItem("token") && localStorage.getItem("user");
 
   return (
     <AppBar position="static" color="default" elevation={1}>
@@ -81,12 +92,18 @@ const Navbar: React.FC<NavbarProps> = () => {
                   <ListItem component={Link} to="/products" onClick={() => toggleDrawer(false)}>
                     <ListItemText primary={t("navbar.products")} />
                   </ListItem>
-                  <ListItem component={Link} to="/register" onClick={() => toggleDrawer(false)}>
-                    <ListItemText primary={t("navbar.register")} />
-                  </ListItem>
-                  <ListItem component={Link} to="/login" onClick={() => toggleDrawer(false)}>
-                    <ListItemText primary={t("navbar.login")} />
-                  </ListItem>
+                  {
+                    !isLoggedIn && (
+                      <>
+                        <ListItem component={Link} to="/register" onClick={() => toggleDrawer(false)}>
+                          <ListItemText primary={t("navbar.register")} />
+                        </ListItem>
+                        <ListItem component={Link} to="/login" onClick={() => toggleDrawer(false)}>
+                          <ListItemText primary={t("navbar.login")} />
+                        </ListItem>
+                      </>
+                    )
+                  }
                   <ListItem component={Link} to="/cart" onClick={() => toggleDrawer(false)}>
                     <ListItemText
                       primary={`${t("navbar.cart")} (${cartItemCount})`}
@@ -104,6 +121,14 @@ const Navbar: React.FC<NavbarProps> = () => {
                       <MenuItem value="ru">Русский</MenuItem>
                       <MenuItem value="uz">O'zbek</MenuItem>
                     </Select>
+                  </ListItem>
+                  <ListItem>
+                    {isLoggedIn && (
+                      <MuiMenuItem onClick={handleLogout}>
+                        <ExitToAppIcon sx={{ mr: 1 }} />
+                        {t("navbar.logout")}
+                      </MuiMenuItem>
+                    )}
                   </ListItem>
                 </List>
               </Box>
@@ -127,20 +152,25 @@ const Navbar: React.FC<NavbarProps> = () => {
                   </Typography>
                 </IconButton>
               </motion.div>
-              <motion.div whileHover={{ scale: 1.1 }}>
-                <IconButton component={Link} to="/register" color="inherit">
-                  <Typography variant="body2" sx={{ ml: 0.5, fontSize: "0.875rem" }}>
-                    {t("navbar.register")}
-                  </Typography>
-                </IconButton>
-              </motion.div>
-              <motion.div whileHover={{ scale: 1.1 }}>
-                <IconButton component={Link} to="/login" color="inherit">
-                  <Typography variant="body2" sx={{ ml: 0.5, fontSize: "0.875rem" }}>
-                    {t("navbar.login")}
-                  </Typography>
-                </IconButton>
-              </motion.div>
+              {!isLoggedIn && (
+                <>
+                  <motion.div whileHover={{ scale: 1.1 }}>
+                    <IconButton component={Link} to="/register" color="inherit">
+                      <Typography variant="body2" sx={{ ml: 0.5, fontSize: "0.875rem" }}>
+                        {t("navbar.register")}
+                      </Typography>
+                    </IconButton>
+                  </motion.div>
+                  <motion.div whileHover={{ scale: 1.1 }}>
+                    <IconButton component={Link} to="/login" color="inherit">
+                      <Typography variant="body2" sx={{ ml: 0.5, fontSize: "0.875rem" }}>
+                        {t("navbar.login")}
+                      </Typography>
+                    </IconButton>
+                  </motion.div>
+                </>
+              )}
+
             </Box>
 
             {/* Cart */}
@@ -176,9 +206,6 @@ const Navbar: React.FC<NavbarProps> = () => {
                   anchorOrigin={{ vertical: "top", horizontal: "right" }}
                   transformOrigin={{ vertical: "top", horizontal: "right" }}
                 >
-                  <MuiMenuItem component={Link} to="/profile" onClick={handleCloseMenu}>
-                    {t("navbar.profile")}
-                  </MuiMenuItem>
                   <MuiMenuItem onClick={handleLogout}>
                     <ExitToAppIcon sx={{ mr: 1 }} />
                     {t("navbar.logout")}

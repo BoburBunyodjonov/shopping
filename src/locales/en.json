@@ -4,7 +4,8 @@
     "products": "Products",
     "register": "Register",
     "login": "Login",
-    "cart": "Cart"
+    "cart": "Cart",
+    "logout": "Logout"
   },
   "home": {
     "welcome": "Welcome to Bordo!",

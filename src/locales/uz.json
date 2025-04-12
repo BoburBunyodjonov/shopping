@@ -4,7 +4,8 @@
     "products": "Mahsulotlar",
     "register": "Ro'yxatdan o'tish",
     "login": "Kirish",
-    "cart": "Savat"
+    "cart": "Savat",
+    "logout": "Chiqish"
   },
   "home": {
     "welcome": "Bordo-ga xush kelibsiz!",
