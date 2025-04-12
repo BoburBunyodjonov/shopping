@@ -38,7 +38,8 @@
     "total": "Jami",
     "placeOrder": "Buyurtma berish",
     "orderSuccess": "Sizning buyurtmangiz muvaffaqiyatli amalga oshirildi!",
-    "orderEmpty": "Sizning savatingiz bo'sh. Buyurtma berishdan oldin mahsulot qo'shing."
+    "orderEmpty": "Sizning savatingiz bo'sh. Buyurtma berishdan oldin mahsulot qo'shing.",
+    "remove": "O'chirish"
   },
   "productDetails": {
     "description": "Bu mahsulotning batafsil tavsifi.",

@@ -12,7 +12,7 @@ import { useAuth } from "../AuthContext"; // AuthContext ni import qilamiz
 const Home: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { isLoggedIn } = useAuth(); // AuthContext dan foydalanish
+  const {hasAccess, isLoggedIn } = useAuth(); // AuthContext dan foydalanish
 
   const [page, setPage] = useState(1); // State for current page
   const take = 16; // Number of products per page
@@ -28,8 +28,10 @@ const Home: React.FC = () => {
   });
 
   const handleProductClick = () => {
-    if (isLoggedIn) {
+    if (hasAccess() && isLoggedIn) {
       navigate('/products');
+    }else if(isLoggedIn) {
+        alert("Mahsulotlarni ko'rish uchun sizda ruxsat yo'q, Ruxsat olish uchun Adminga murojat qiling!")
     } else {
       navigate('/register');
     }

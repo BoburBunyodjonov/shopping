@@ -38,7 +38,8 @@
     "total": "Total",
     "placeOrder": "Place Order",
     "orderSuccess": "Your order has been placed successfully!",
-    "orderEmpty": "Your cart is empty. Add some products before placing an order."
+    "orderEmpty": "Your cart is empty. Add some products before placing an order.",
+    "remove": "Remove"
   },
   "productDetails": {
     "description": "This is a detailed description of the product.",

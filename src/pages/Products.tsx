@@ -42,7 +42,7 @@ const Products: React.FC = () => {
               className="w-full object-cover rounded-md mb-4"
             />
             <h2 className="text-lg font-bold text-gray-800">{product.title}</h2>
-            <p className="text-green-500 font-semibold">{formatPrice(product.price)} So'm</p>
+            <p className="text-green-500 font-semibold">{formatPrice(String(product.price))} So'm</p>
           </Link>
         ))}
       </div>

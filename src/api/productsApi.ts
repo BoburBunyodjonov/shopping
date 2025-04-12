@@ -3,8 +3,9 @@ import { get, post, put } from "./apiClient";
 export interface Product {
   id: number;
   title: string;
-  price: string;
-  image_url: any;
+  price: number;
+  description: string;
+  image_url: string[];
 }
 
 export interface IProductProps {

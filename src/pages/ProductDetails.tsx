@@ -5,6 +5,7 @@ import { addToCart, removeFromCart } from "../store/cartSlice";
 import { RootState } from "../store/store";
 import axios from "axios";
 import { formatPrice } from "../utils/formatPrice";
+import { Product } from "../api/productsApi";
 
 const ProductDetails: React.FC = () => {
   const { id } = useParams();
@@ -13,16 +14,16 @@ const ProductDetails: React.FC = () => {
     state.cart.items.find((item) => item.id === Number(id))
   );
 
-  const [product, setProduct] = useState<any>(null);
-  const [selectedColor, setSelectedColor] = useState<string>("Red");
-  const [selectedSize, setSelectedSize] = useState<string>("M");
+  const [product, setProduct] = useState<Product | null>(null);
+  // const [selectedColor, setSelectedColor] = useState<string>("Red");
+  // const [selectedSize, setSelectedSize] = useState<string>("M");
   const [selectedImage, setSelectedImage] = useState<string>("");
 
   // Fetch product data from the API
   useEffect(() => {
     const fetchProductData = async () => {
       try {
-        const response = await axios.get(`/products/${id}`);
+        const response = await axios.get(`https://srvr.bordoshoes.uz/products/${id}`);
         setProduct(response.data);
         if (response.data.image_url.length > 0) {
           setSelectedImage(response.data.image_url[0]);
@@ -40,7 +41,7 @@ const ProductDetails: React.FC = () => {
       dispatch(
         addToCart({
           id: product.id,
-          name: product.name,
+          title: product.title,
           price: product.price,
           quantity: 1,
         })
@@ -53,7 +54,7 @@ const ProductDetails: React.FC = () => {
       dispatch(
         addToCart({
           id: cartItem.id,
-          name: cartItem.name,
+          title: cartItem.title,
           price: cartItem.price,
           quantity: 1,
         })
@@ -66,7 +67,7 @@ const ProductDetails: React.FC = () => {
       dispatch(
         addToCart({
           id: cartItem.id,
-          name: cartItem.name,
+          title: cartItem.title,
           price: cartItem.price,
           quantity: -1,
         })
@@ -82,19 +83,19 @@ const ProductDetails: React.FC = () => {
 
   return (
     <div className="p-6">
-      <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Product Images */}
         <div>
           <div className="relative w-full h-[400px] mb-4">
             <img
               src={selectedImage}
-              alt={product.name}
+              alt={product.title}
               className="w-full h-full object-cover rounded-md"
             />
           </div>
           <div className="flex space-x-4">
-            {product.image_url.map((image: any, index: any) => (
+            {product?.image_url?.map((image: string, index: number) => (
               <img
                 key={index}
                 src={image}
@@ -109,15 +110,15 @@ const ProductDetails: React.FC = () => {
 
         {/* Product Details */}
         <div>
-          <h1 className="text-gray-700 mb-4 font-extrabold">{product.title}</h1>
+          <h1 className="text-3xl font-bold mb-4">{product.title}</h1>
 
           <p className="text-green-500 text-lg font-semibold mb-4">
-            {formatPrice(product.price)} So'm
+            {formatPrice(String(product.price))} So'm
           </p>
           <p className="text-gray-700 mb-4">{product.description}</p>
 
           {/* Color Selection */}
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <h3 className="text-base font-bold mb-2">Rangi</h3>
             <div className="flex space-x-4">
               {product?.colors?.map((color: any) => (
@@ -134,10 +135,10 @@ const ProductDetails: React.FC = () => {
                 ></button>
               ))}
             </div>
-          </div>
+          </div> */}
 
           {/* Size Selection */}
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <h3 className="text-base font-bold mb-2">Razmer</h3>
             <div className="flex space-x-4">
               {product?.sizes?.map((size: any) => (
@@ -153,7 +154,7 @@ const ProductDetails: React.FC = () => {
                 </button>
               ))}
             </div>
-          </div>
+          </div> */}
 
           {/* Add to Cart or Increment/Decrement Buttons */}
           {cartItem ? (

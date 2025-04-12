@@ -27,10 +27,7 @@ const Register: React.FC = () => {
     return 2;
   }, [formData.password]);
 
-  // Telefon raqamini tekshirish
-  const validatePhoneNumber = (phone: string) => {
-    return /^[0-9]{9,15}$/.test(phone);
-  };
+
 
   const mutation = useMutation<UserResponse, Error, UserRegistration>({
     mutationFn: registerUser,
@@ -60,12 +57,6 @@ const Register: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Validatsiyalar
-    if (!validatePhoneNumber(formData.phone_number)) {
-      toast.error("Please enter a valid phone number (9-15 digits)");
-      return;
-    }
     
     if (formData.password.length < 6) {
       toast.error("Password must be at least 6 characters");
@@ -107,7 +98,7 @@ const Register: React.FC = () => {
             Phone Number
           </label>
           <input
-            type="tel"
+            type="text"
             id="phone_number"
             name="phone_number"
             value={formData.phone_number}
@@ -115,10 +106,7 @@ const Register: React.FC = () => {
             className="w-full border rounded p-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             placeholder="Enter your phone number"
             required
-            pattern="[0-9]{9,15}"
-            autoComplete="tel"
           />
-          <p className="text-xs text-gray-500 mt-1">Enter 9-15 digit phone number</p>
         </div>
 
         <div>

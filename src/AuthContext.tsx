@@ -1,4 +1,3 @@
-// AuthContext.tsx
 'use client';
 
 import { createContext, useContext, useEffect, useState } from 'react';
@@ -8,6 +7,7 @@ type User = {
   name: string;
   phone_number: string;
   access: boolean;
+  location: string;
   // boshqa user fieldlari...
 };
 
@@ -16,13 +16,15 @@ type AuthContextType = {
   user: User | null;
   login: (token: string, user: User) => void;
   logout: () => void;
+  hasAccess: () => boolean; // Yangi funksiya
 };
 
 const AuthContext = createContext<AuthContextType>({
   isLoggedIn: false,
   user: null,
   login: () => {},
-  logout: () => {}
+  logout: () => {},
+  hasAccess: () => false
 });
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
@@ -33,10 +35,18 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     if (typeof window !== 'undefined') {
       const token = localStorage.getItem('token');
       const userData = localStorage.getItem('user');
+      const access = localStorage.getItem('access'); // Access ni o'qiymiz
       
       if (token && userData) {
         setIsLoggedIn(true);
-        setUser(JSON.parse(userData));
+        const parsedUser = JSON.parse(userData);
+        setUser(parsedUser);
+        
+        // Agar access localStorage'da saqlangan bo'lsa
+        if (access) {
+          parsedUser.access = access === 'true';
+          setUser(parsedUser);
+        }
       }
     }
   }, []);
@@ -45,6 +55,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     if (typeof window !== 'undefined') {
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('access', String(user.access)); // Access ni alohida saqlaymiz
       setIsLoggedIn(true);
       setUser(user);
     }
@@ -54,16 +65,31 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     if (typeof window !== 'undefined') {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
+      localStorage.removeItem('access'); // Access ni ham o'chiramiz
       setIsLoggedIn(false);
       setUser(null);
     }
   };
 
+  const hasAccess = () => {
+    if (typeof window !== 'undefined') {
+      const storedAccess = localStorage.getItem('access');
+      return storedAccess === 'true' || (user?.access === true);
+    }
+    return false;
+  };
+
   return (
-    <AuthContext.Provider value={{ isLoggedIn, user, login, logout }}>
+    <AuthContext.Provider value={{ isLoggedIn, user, login, logout, hasAccess }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
+};

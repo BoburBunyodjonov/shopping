@@ -19,6 +19,7 @@ const Login: React.FC = () => {
   const mutation = useMutation<LoginResponse, Error, UserLogin>({
     mutationFn: loginUser,
     onSuccess: (data) => {
+      console.log(data)
       login(data.token, data.user);
       
       toast.success(`Login successful! Welcome back, ${data.user.name}`);
