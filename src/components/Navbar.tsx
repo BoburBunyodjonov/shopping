@@ -29,7 +29,7 @@ const Navbar: React.FC<NavbarProps> = () => {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const openMenu = Boolean(anchorEl);
-  
+
   // AuthContext dan foydalanish
   const { isLoggedIn, logout } = useAuth();
 
@@ -109,9 +109,9 @@ const Navbar: React.FC<NavbarProps> = () => {
                       size="small"
                       sx={{ bgcolor: "white", borderRadius: 1, width: "100%" }}
                     >
+                      <MenuItem value="uz">O'zbek</MenuItem>
                       <MenuItem value="en">English</MenuItem>
                       <MenuItem value="ru">Русский</MenuItem>
-                      <MenuItem value="uz">O'zbek</MenuItem>
                     </Select>
                   </ListItem>
                   <ListItem>
@@ -179,9 +179,9 @@ const Navbar: React.FC<NavbarProps> = () => {
               size="small"
               sx={{ ml: 2, bgcolor: "white", borderRadius: 1 }}
             >
+              <MenuItem value="uz">O'zbek</MenuItem>
               <MenuItem value="en">English</MenuItem>
               <MenuItem value="ru">Русский</MenuItem>
-              <MenuItem value="uz">O'zbek</MenuItem>
             </Select>
 
             {/* Profile Dropdown */}
