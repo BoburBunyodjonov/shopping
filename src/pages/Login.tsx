@@ -16,10 +16,10 @@ const Login: React.FC = () => {
   });
 
   useEffect(() => {
-    if (loginData) {
-      localStorage.setItem("token", loginData.token);
-      localStorage.setItem("access", loginData.user.access.toString());
-      localStorage.setItem("user", JSON.stringify(loginData.user));
+    if (loginData && typeof window !== 'undefined') { 
+        localStorage.setItem("token", loginData.token);
+        localStorage.setItem("access", loginData.user.access.toString());
+        localStorage.setItem("user", JSON.stringify(loginData.user));
     }
   }, [loginData]);
 

@@ -48,18 +48,22 @@ const Navbar: React.FC<NavbarProps> = () => {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    const user = localStorage.getItem("user");
+    if (typeof window !== 'undefined') {
+      const token = localStorage.getItem("token");
+      const user = localStorage.getItem("user");
 
-    if (token && user) {
-      setIsLoggedIn(true);
+      if (token && user) {
+        setIsLoggedIn(true);
+      }
     }
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    window.location.href = "/";
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      window.location.href = "/";
+    }
   };
 
   return (

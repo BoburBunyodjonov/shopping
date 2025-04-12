@@ -72,11 +72,13 @@ const Home: React.FC = () => {
             key={product.id}
             className="border border-[#b7b7b7] rounded-lg p-3 hover:shadow-xl cursor-pointer transition-transform transform hover:scale-99 bg-white"
             onClick={() => {
-              const access = localStorage.getItem('access');
-              if (access === 'true') {
-                navigate('/products');
-              } else {
-                navigate('/register');
+              if (typeof window !== 'undefined') {
+                const access = localStorage.getItem('access');
+                if (access === 'true') {
+                  navigate('/products');
+                } else {
+                  navigate('/register');
+                }
               }
             }}
             whileHover={{ scale: 1.05 }}
