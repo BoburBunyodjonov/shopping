@@ -12,7 +12,7 @@ import { useAuth } from "../AuthContext"; // AuthContext ni import qilamiz
 const Home: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { isLoggedIn, user } = useAuth(); // AuthContext dan foydalanish
+  const { isLoggedIn } = useAuth(); // AuthContext dan foydalanish
 
   const [page, setPage] = useState(1); // State for current page
   const take = 16; // Number of products per page
@@ -59,7 +59,7 @@ const Home: React.FC = () => {
       transition={{ duration: 0.5 }}
     >
       {/* Welcome Message with User Name */}
-      {isLoggedIn && (
+      {/* {isLoggedIn && (
         <motion.div
           className="mb-6 bg-blue-50 p-4 rounded-md"
           initial={{ y: -20, opacity: 0 }}
@@ -70,7 +70,7 @@ const Home: React.FC = () => {
             {t("home.welcomeBack")}, {user?.name}!
           </h2>
         </motion.div>
-      )}
+      )} */}
 
       {/* About Section */}
       <motion.div

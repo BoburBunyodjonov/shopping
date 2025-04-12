@@ -22,7 +22,7 @@ const ProductDetails: React.FC = () => {
   useEffect(() => {
     const fetchProductData = async () => {
       try {
-        const response = await axios.get(`http://srvr.bordoshoes.uz/products/${id}`);
+        const response = await axios.get(`/products/${id}`);
         setProduct(response.data);
         if (response.data.image_url.length > 0) {
           setSelectedImage(response.data.image_url[0]);
