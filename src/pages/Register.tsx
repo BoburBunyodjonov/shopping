@@ -7,9 +7,11 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthContext";
+import { useTranslation } from "react-i18next";
 
 const Register: React.FC = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const { login } = useAuth();
   const [formData, setFormData] = useState<UserRegistration>({
     name: "",
@@ -72,12 +74,12 @@ const Register: React.FC = () => {
   };
 
   return (
-    <div className="p-6 max-w-md mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Register</h1>
+    <div className="pt-20 max-w-md mx-auto">
+      <h1 className="text-2xl font-bold mb-4">{t("register.title")}</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label htmlFor="name" className="block text-sm font-medium mb-1">
-            Full Name
+            {t("register.name")}
           </label>
           <input
             type="text"
@@ -86,7 +88,6 @@ const Register: React.FC = () => {
             value={formData.name}
             onChange={handleChange}
             className="w-full border rounded p-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            placeholder="Enter your full name"
             required
             minLength={3}
             autoComplete="name"
@@ -95,7 +96,7 @@ const Register: React.FC = () => {
 
         <div>
           <label htmlFor="phone_number" className="block text-sm font-medium mb-1">
-            Phone Number
+            {t("register.phone_number")}
           </label>
           <input
             type="text"
@@ -104,14 +105,13 @@ const Register: React.FC = () => {
             value={formData.phone_number}
             onChange={handleChange}
             className="w-full border rounded p-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            placeholder="Enter your phone number"
             required
           />
         </div>
 
         <div>
           <label htmlFor="password" className="block text-sm font-medium mb-1">
-            Password
+            {t("register.password")}
           </label>
           <input
             type="password"
@@ -120,7 +120,6 @@ const Register: React.FC = () => {
             value={formData.password}
             onChange={handleChange}
             className="w-full border rounded p-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            placeholder="Enter your password"
             required
             minLength={6}
             autoComplete="new-password"
@@ -146,7 +145,7 @@ const Register: React.FC = () => {
 
         <div>
           <label htmlFor="location" className="block text-sm font-medium mb-1">
-            Location
+            {t("register.location")}
           </label>
           <input
             type="text"
@@ -155,7 +154,6 @@ const Register: React.FC = () => {
             value={formData.location}
             onChange={handleChange}
             className="w-full border rounded p-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            placeholder="Enter your location"
             required
             autoComplete="address-level2"
           />
@@ -172,19 +170,19 @@ const Register: React.FC = () => {
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
               </svg>
-              Registering...
+              {t("register.submit")}...
             </span>
-          ) : "Register"}
+          ) : t("register.submit")}
         </button>
 
         <div className="text-center text-sm mt-4">
-          Already have an account?{' '}
+          {t('register.have_account')} {" "}
           <button 
             type="button"
             onClick={() => navigate('/login')}
             className="text-blue-500 hover:text-blue-700 font-medium"
           >
-            Login here
+            Login
           </button>
         </div>
       </form>

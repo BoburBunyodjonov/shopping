@@ -78,36 +78,36 @@ const ProductDetails: React.FC = () => {
   };
 
   if (!product) {
-    return <div>Loading...</div>; // Loading state while waiting for API response
+    return  <div className="flex justify-center items-center h-screen">
+    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+  </div>;
   }
 
   return (
-    <div className="p-6">
-
+    <div className="w-[60%] mx-auto">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Product Images */}
-        <div>
-          <div className="relative w-full h-[400px] mb-4">
+        <div className="">
+          <div className="relative mb-4">
             <img
               src={selectedImage}
               alt={product.title}
-              className="w-full h-full object-cover rounded-md"
+              className="w-full h-[400px] object-contain rounded-md mb-4"
             />
           </div>
-          <div className="flex space-x-4">
+          <div className="m-12 flex space-x-4 overflow-x-auto">
             {product?.image_url?.map((image: string, index: number) => (
               <img
                 key={index}
                 src={image}
                 alt={`Thumbnail ${index + 1}`}
                 onClick={() => setSelectedImage(image)}
-                className={`w-16 h-16 object-cover rounded-md cursor-pointer border ${selectedImage === image ? "border-green-500" : "border-gray-300"
+                className={`w-16 h-16 object-contain rounded-md cursor-pointer border ${selectedImage === image ? "border-green-500" : "border-gray-300"
                   }`}
               />
             ))}
           </div>
         </div>
-
         {/* Product Details */}
         <div>
           <h1 className="text-3xl font-bold mb-4">{product.title}</h1>

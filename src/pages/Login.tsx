@@ -7,9 +7,11 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthContext"; // AuthContext ni import qilamiz
+import { useTranslation } from "react-i18next";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
+   const { t } = useTranslation();
   const { login } = useAuth(); // AuthContext dan login funksiyasini olamiz
   const [formData, setFormData] = useState<UserLogin>({
     phone_number: "",
@@ -48,12 +50,12 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="p-6 max-w-md mx-auto">
+    <div className="mt-20 max-w-md mx-auto">
       <h1 className="text-2xl font-bold mb-4">Login</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label htmlFor="phone_number" className="block text-sm font-medium">
-            Phone Number
+            {t("register.phone_number")}
           </label>
           <input
             type="text"
@@ -62,13 +64,13 @@ const Login: React.FC = () => {
             value={formData.phone_number}
             onChange={handleChange}
             className="w-full border rounded p-2"
-            placeholder="Enter your phone number"
+            placeholder={t("register.phone_number")}
             required
           />
         </div>
         <div>
           <label htmlFor="password" className="block text-sm font-medium">
-            Password
+            {t("register.password")}
           </label>
           <input
             type="password"
@@ -77,7 +79,7 @@ const Login: React.FC = () => {
             value={formData.password}
             onChange={handleChange}
             className="w-full border rounded p-2"
-            placeholder="Enter your password"
+            placeholder={t("register.password")}
             required
           />
         </div>

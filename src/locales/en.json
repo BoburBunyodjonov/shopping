@@ -17,14 +17,20 @@
     "all_products": "All Products",
     "previous": "Previous",
     "next": "Next",
-    "page": "Page"
+    "page": "Page",
+    "search_title": "Product name",
+    "search_code": "Product code",
+    "filter_category": "Category"
   },
   "register": {
     "title": "Register",
     "name": "Name",
     "email": "Email",
     "password": "Password",
-    "submit": "Register"
+    "submit": "Register",
+    "phone_number": "Phone number",
+    "location": "Location",
+    "have_account": "Already have an account?"
   },
   "login": {
     "title": "Login",

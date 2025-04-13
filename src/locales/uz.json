@@ -17,13 +17,18 @@
     "all_products": "Barcha mahsulotlar",
     "previous": "Oldingi",
     "next": "Keyingi",
-    "page": "Sahifa"
+    "page": "Sahifa",
+    "search_title": "Mahsulot nomi",
+    "search_code": "Mahsulot kodi",
+    "filter_category": "Kategoriya"
   },
   "register": {
     "title": "Ro'yxatdan o'tish",
     "name": "Ism",
-    "email": "Elektron pochta",
     "password": "Parol",
+    "phone_number": "Telefon raqam",
+    "location": "Lakatsiya",
+    "have_account": "Hisobingiz bormi?",
     "submit": "Ro'yxatdan o'tish"
   },
   "login": {
