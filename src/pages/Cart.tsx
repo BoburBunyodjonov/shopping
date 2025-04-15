@@ -18,7 +18,7 @@ const Cart: React.FC = () => {
   );
 
   const sendOrderToTelegram = async (orderData: string) => {
-    const botToken = "7415722182:AAF74OV0h6n4Zh5NQfpoMyX-BAKIR3VeYAE";
+    const botToken = "7674034931:AAE66g7xxqOZ-gqHmOuJdLXBRbfLKDYgEmA";
     const chatId = "-1002586909183";
     
     try {
