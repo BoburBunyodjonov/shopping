@@ -53,13 +53,14 @@ const Cart: React.FC = () => {
       alert(t("cart.orderEmpty"));
       return;
     }
-
+    console.log(cartItems)
     // Buyurtma malumotlarini tayyorlash
     const orderDetails = cartItems
       .map(
         (item) =>
           `Mahsulot: ${item.title}\n` +
           `Miqdor: ${item.quantity}\n` +
+          `Razmeri: ${item.size}\n` +
           `Narx: ${item.price * item.quantity} So'm\n` +
           `Mijoz: ${user?.name}\n` +
           `Telefon raqami: ${user?.phone_number}\n` +
@@ -99,6 +100,9 @@ const Cart: React.FC = () => {
                   <h2 className="text-lg font-medium">{item.title}</h2>
                   <p className="text-sm text-gray-500">
                     {t("productDetails.quantity")}: {item.quantity}
+                  </p>
+                  <p className="text-sm text-gray-500">
+                    {t("productDetails.size")}: {item.size}
                   </p>
                 </div>
                 <div className="flex items-center space-x-4">

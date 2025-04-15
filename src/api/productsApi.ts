@@ -6,6 +6,7 @@ export interface Product {
   price: number;
   description: string;
   image_url: string[];
+  size: number[]
 }
 
 export interface IProductProps {

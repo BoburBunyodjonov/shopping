@@ -51,7 +51,8 @@
     "selectColor": "Rangni tanlang",
     "selectSize": "O'lchamni tanlang",
     "addToCart": "Savatchaga qo'shish",
-    "quantity": "Miqdor"
+    "quantity": "Miqdor",
+    "size": "Razmer"
   },
   "about": {
     "title": "Biz haqimizda",

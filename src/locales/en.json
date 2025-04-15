@@ -52,7 +52,8 @@
     "selectColor": "Select Color",
     "selectSize": "Select Size",
     "addToCart": "Add to Cart",
-    "quantity": "Quantity"
+    "quantity": "Quantity",
+    "size": "Size"
   },
   "about": {
     "title": "About Us",

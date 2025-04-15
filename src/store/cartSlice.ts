@@ -5,13 +5,12 @@ interface CartItem {
   title: string;
   price: number;
   quantity: number;
+  size?: number; // Yangi qo'shilgan size maydoni
 }
 
-interface CartState {
+const initialState: {
   items: CartItem[];
-}
-
-const initialState: CartState = {
+} = {
   items: [],
 };
 
