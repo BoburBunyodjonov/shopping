@@ -8,14 +8,17 @@ import { IProductProps } from "../api/productsApi";
 import { post } from "../api/apiClient";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "../AuthContext"; // AuthContext ni import qilamiz
+import { useUser } from "../hooks/useUser";
+// import { useUser } from "../hooks/useUser";
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const {hasAccess, isLoggedIn } = useAuth(); // AuthContext dan foydalanish
+  const {isLoggedIn, user } = useAuth();
+  const { userInfo } = useUser(user?.id?.toString() || '');
 
-  const [page, setPage] = useState(1); // State for current page
-  const take = 16; // Number of products per page
+  const [page, setPage] = useState(1); 
+  const take = 16;
 
   const fetchFilteredProducts = async (): Promise<IProductProps> => {
     return await post<IProductProps>(`/products/filter?page=${page}&take=${take}`, { take, page });
@@ -28,7 +31,7 @@ const Home: React.FC = () => {
   });
 
   const handleProductClick = () => {
-    if (hasAccess() && isLoggedIn) {
+    if (userInfo?.access && isLoggedIn) {
       navigate('/products');
     }else if(isLoggedIn) {
         alert("Mahsulotlarni ko'rish uchun sizda ruxsat yo'q, Ruxsat olish uchun Adminga murojat qiling!")
