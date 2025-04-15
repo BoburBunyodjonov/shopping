@@ -54,17 +54,24 @@ const Register: React.FC = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+  
+    // Telefon raqam faqat + va raqamlardan iborat bo'lishi kerak
+    if (name === "phone_number") {
+      const cleanedValue = value.replace(/[^+\d]/g, ""); // faqat + va raqamlar qolsin
+      setFormData((prev) => ({ ...prev, [name]: cleanedValue }));
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    }
   };
-
+  
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (formData.password.length < 6) {
       toast.error("Password must be at least 6 characters");
       return;
     }
-    
+
     if (formData.name.length < 3) {
       toast.error("Name must be at least 3 characters");
       return;
@@ -74,7 +81,7 @@ const Register: React.FC = () => {
   };
 
   return (
-    <div className="pt-20 max-w-md mx-auto">
+    <div className="pt-20 max-w-md mx-auto px-5">
       <h1 className="text-2xl font-bold mb-4">{t("register.title")}</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
@@ -99,14 +106,20 @@ const Register: React.FC = () => {
             {t("register.phone_number")}
           </label>
           <input
-            type="text"
+            type="tel"
             id="phone_number"
             name="phone_number"
             value={formData.phone_number}
             onChange={handleChange}
             className="w-full border rounded p-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             required
+            pattern="^\+998\d{9}$"
+            title="Telefon raqam +998 bilan boshlanishi va jami 13 ta belgi bo'lishi kerak (masalan: +998901234567)"
+            maxLength={13}
+            inputMode="numeric"
           />
+
+
         </div>
 
         <div>
@@ -126,19 +139,18 @@ const Register: React.FC = () => {
           />
           <div className="flex items-center mt-1">
             <div className="w-full bg-gray-200 rounded-full h-1.5">
-              <div 
-                className={`h-1.5 rounded-full ${
-                  passwordStrength === 0 ? 'bg-gray-200' :
+              <div
+                className={`h-1.5 rounded-full ${passwordStrength === 0 ? 'bg-gray-200' :
                   passwordStrength === 1 ? 'bg-red-500' :
-                  passwordStrength === 2 ? 'bg-yellow-400' : 'bg-green-500'
-                }`} 
+                    passwordStrength === 2 ? 'bg-yellow-400' : 'bg-green-500'
+                  }`}
                 style={{ width: `${(passwordStrength / 3) * 100}%` }}
               />
             </div>
             <span className="text-xs ml-2 text-gray-500">
               {passwordStrength === 0 ? '' :
-               passwordStrength === 1 ? 'Weak' :
-               passwordStrength === 2 ? 'Medium' : 'Strong'}
+                passwordStrength === 1 ? 'Weak' :
+                  passwordStrength === 2 ? 'Medium' : 'Strong'}
             </span>
           </div>
         </div>
@@ -177,7 +189,7 @@ const Register: React.FC = () => {
 
         <div className="text-center text-sm mt-4">
           {t('register.have_account')} {" "}
-          <button 
+          <button
             type="button"
             onClick={() => navigate('/login')}
             className="text-blue-500 hover:text-blue-700 font-medium"

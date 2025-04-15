@@ -14,6 +14,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { useAuth } from "../AuthContext";
+import { useUser } from "../hooks/useUser";
 
 interface NavbarProps {
   logoText: string;
@@ -22,6 +23,8 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = () => {
   const { t, i18n } = useTranslation();
+  const { isLoggedIn, logout, user } = useAuth();
+  const { userInfo } = useUser(user?.id?.toString() || '');
   const cartItemCount = useSelector((state: RootState) =>
     state.cart.items.reduce((total, item) => total + item.quantity, 0)
   );
@@ -31,7 +34,6 @@ const Navbar: React.FC<NavbarProps> = () => {
   const openMenu = Boolean(anchorEl);
 
   // AuthContext dan foydalanish
-  const { isLoggedIn, logout } = useAuth();
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
@@ -81,9 +83,12 @@ const Navbar: React.FC<NavbarProps> = () => {
                   <ListItem component={Link} to="/" onClick={() => toggleDrawer(false)}>
                     <ListItemText primary={t("navbar.home")} />
                   </ListItem>
-                  <ListItem component={Link} to="/products" onClick={() => toggleDrawer(false)}>
-                    <ListItemText primary={t("navbar.products")} />
-                  </ListItem>
+                  {
+                    userInfo?.access && isLoggedIn &&
+                    <ListItem component={Link} to="/products" onClick={() => toggleDrawer(false)}>
+                      <ListItemText primary={t("navbar.products")} />
+                    </ListItem>
+                  }
                   {
                     !isLoggedIn && (
                       <>
@@ -137,13 +142,17 @@ const Navbar: React.FC<NavbarProps> = () => {
                   </Typography>
                 </IconButton>
               </motion.div>
-              <motion.div whileHover={{ scale: 1.1 }}>
-                <IconButton component={Link} to="/products" color="inherit">
-                  <Typography variant="body2" sx={{ ml: 0.5, fontSize: "0.875rem" }}>
-                    {t("navbar.products")}
-                  </Typography>
-                </IconButton>
-              </motion.div>
+              {
+                userInfo?.access && isLoggedIn &&
+                <motion.div whileHover={{ scale: 1.1 }}>
+                  <IconButton component={Link} to="/products" color="inherit">
+                    <Typography variant="body2" sx={{ ml: 0.5, fontSize: "0.875rem" }}>
+                      {t("navbar.products")}
+                    </Typography>
+                  </IconButton>
+                </motion.div>
+              }
+
               {!isLoggedIn && (
                 <>
                   <motion.div whileHover={{ scale: 1.1 }}>
@@ -179,7 +188,7 @@ const Navbar: React.FC<NavbarProps> = () => {
               size="small"
               sx={{ ml: 2, bgcolor: "white", borderRadius: 1 }}
             >
-              <MenuItem value="uz">O'zbek</MenuItem>
+              <MenuItem value="uz" selected>O'zbek</MenuItem>
               <MenuItem value="en">English</MenuItem>
               <MenuItem value="ru">Русский</MenuItem>
             </Select>

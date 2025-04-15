@@ -11,7 +11,7 @@ import { useTranslation } from "react-i18next";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
-   const { t } = useTranslation();
+  const { t } = useTranslation();
   const { login } = useAuth(); // AuthContext dan login funksiyasini olamiz
   const [formData, setFormData] = useState<UserLogin>({
     phone_number: "",
@@ -23,7 +23,7 @@ const Login: React.FC = () => {
     onSuccess: (data) => {
       console.log(data)
       login(data.token, data.user);
-      
+
       toast.success(`Login successful! Welcome back, ${data.user.name}`);
       setFormData({
         phone_number: "",
@@ -39,10 +39,16 @@ const Login: React.FC = () => {
     },
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { name, value } = e.target;
+    
+      if (name === "phone_number") {
+        const cleanedValue = value.replace(/[^+\d]/g, ""); // faqat + va raqamlar qolsin
+        setFormData((prev) => ({ ...prev, [name]: cleanedValue }));
+      } else {
+        setFormData((prev) => ({ ...prev, [name]: value }));
+      }
+    };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -50,7 +56,7 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="mt-20 max-w-md mx-auto">
+    <div className="mt-20 max-w-md mx-auto px-5">
       <h1 className="text-2xl font-bold mb-4">Login</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
@@ -58,7 +64,7 @@ const Login: React.FC = () => {
             {t("register.phone_number")}
           </label>
           <input
-            type="text"
+            type="tel"
             id="phone_number"
             name="phone_number"
             value={formData.phone_number}
@@ -66,6 +72,10 @@ const Login: React.FC = () => {
             className="w-full border rounded p-2"
             placeholder={t("register.phone_number")}
             required
+            pattern="^\+998\d{9}$"
+            title="Telefon raqam +998 bilan boshlanishi va jami 13 ta belgi bo'lishi kerak (masalan: +998901234567)"
+            maxLength={13}
+            inputMode="numeric"
           />
         </div>
         <div>
