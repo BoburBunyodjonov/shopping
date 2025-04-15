@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 
 import Banner from "../assets/banner.jpg";
+import Banner1 from "../assets/black.png";
 
 const images = [
   Banner,
-  Banner,
-  Banner,
+  Banner1,
 ];
 
 const Carousel: React.FC = () => {
