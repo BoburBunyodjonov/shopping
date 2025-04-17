@@ -114,7 +114,7 @@ const Navbar: React.FC<NavbarProps> = () => {
                       size="small"
                       sx={{ bgcolor: "white", borderRadius: 1, width: "100%" }}
                     >
-                      <MenuItem value="uz">O'zbek</MenuItem>
+                      <MenuItem value="uz" selected>O'zbek</MenuItem>
                       <MenuItem value="en">English</MenuItem>
                       <MenuItem value="ru">Русский</MenuItem>
                     </Select>
@@ -186,7 +186,7 @@ const Navbar: React.FC<NavbarProps> = () => {
               onChange={(e) => changeLanguage(e.target.value)}
               variant="outlined"
               size="small"
-              sx={{ ml: 2, bgcolor: "white", borderRadius: 1 }}
+              sx={{ ml: 2,  borderRadius: 1, width: "150px" }}
             >
               <MenuItem value="uz" selected>O'zbek</MenuItem>
               <MenuItem value="en">English</MenuItem>
