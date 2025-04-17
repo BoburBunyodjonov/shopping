@@ -29,7 +29,7 @@
     "password": "Пароль",
     "submit": "Зарегистрироваться",
     "phone_number": "Номер телефона",
-    "location": "Лактация",
+    "location": "Локация",
     "have_account": "У вас уже есть аккаунт?"
   },
   "login": {

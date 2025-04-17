@@ -14,7 +14,7 @@ const Login: React.FC = () => {
   const { t } = useTranslation();
   const { login } = useAuth(); // AuthContext dan login funksiyasini olamiz
   const [formData, setFormData] = useState<UserLogin>({
-    phone_number: "",
+    phone_number: "+998",
     password: "",
   });
 

@@ -16,7 +16,7 @@ const Register: React.FC = () => {
   const [formData, setFormData] = useState<UserRegistration>({
     name: "",
     password: "",
-    phone_number: "",
+    phone_number: "+998",
     location: "",
   });
 
